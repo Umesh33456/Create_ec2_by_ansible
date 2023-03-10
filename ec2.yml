@@ -1,0 +1,14 @@
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+
+  tasks:
+    - name: Create an ec2 instance
+      amazon.aws.ec2_instance:
+         name: "public-instance"
+         key_name: "naveen"
+         instance_type: t2.micro
+         security_group: default
+         network:
+           assign_public_ip: true
+         image_id: ami-0557a15b87f6559cf
+         region: us-east-1
