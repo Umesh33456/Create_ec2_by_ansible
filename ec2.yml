@@ -5,10 +5,10 @@
     - name: Create an ec2 instance
       amazon.aws.ec2_instance:
          name: "public-instance"
-         key_name: "naveen"
+         key_name: "umesh"
          instance_type: t2.micro
          security_group: default
          network:
            assign_public_ip: true
-         image_id: ami-0557a15b87f6559cf
+         image_id: ami-053b0d53c279acc90
          region: us-east-1
