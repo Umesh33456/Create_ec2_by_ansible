@@ -2,48 +2,7 @@
   hosts: localhost
 
 
-  
-
-  vars:
-     keypair: mySep22Key
-     instance_type: t2.micro
-     image: ami-0ee23bfc74a881de5
-     wait: yes
-     group: webserver
-     count: 1
-     region: us-east-1
-     security_group: ec2-security-group
-   
-   tasks:
-
-     - name: Create a security group
-       local_action: 
-         module: ec2_group
-         name: "{{ security_group }}"
-         description: Security Group for webserver Servers
-         region: "{{ region }}"
-         rules:
-            - proto: tcp
-              from_port: 22
-              to_port: 22
-              cidr_ip: 0.0.0.0/0
-            - proto: tcp
-              from_port: 8080
-              to_port: 8080
-              cidr_ip: 0.0.0.0/0
-            - proto: tcp
-              from_port: 80
-              to_port: 80
-              cidr_ip: 0.0.0.0/0
-            - proto: tcp
-              from_port: 443
-              to_port: 443
-              cidr_ip: 0.0.0.0/0
-         rules_egress:
-            - proto: all
-              cidr_ip: 0.0.0.0/0
-       register: basic_firewall
-  #tasks:
+  tasks:
     - name: Create an ec2 instance
       amazon.aws.ec2_instance:
          name: "public-instance"
